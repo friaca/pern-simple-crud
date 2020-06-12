@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import errorHandler from './middlewares/handleErrors';
 import userRoutes from './routes/users';
 
 function createApp({ port } = { port: 1957 }) {
@@ -9,6 +10,8 @@ function createApp({ port } = { port: 1957 }) {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use('/', userRoutes);
+
+  app.use(errorHandler);
 
   app.listen(port);
   console.log(`Servidor iniciado na porta ${port}!`);
