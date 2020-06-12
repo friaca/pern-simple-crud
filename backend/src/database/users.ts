@@ -1,5 +1,5 @@
 import pool from '../config/database';
-import { User, UserInfo } from '../types/User';
+import { User, UserInfo } from '../types/user';
 
 async function list(): Promise<User[]> {
   try {
