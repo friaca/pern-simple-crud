@@ -50,7 +50,7 @@ routes.put('/users/:id', async (req, res) => {
 
     const updatedUser = usersServices.updateUser(Number(id), { name, age, email, phone });
 
-    res.sendStatus(200);
+    res.sendStatus(200).json(updatedUser);
   } catch (err) {
     console.error(err.message);
   }
