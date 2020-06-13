@@ -1,74 +1,73 @@
 import { Router } from 'express';
 import usersServices from '../services/users';
+import { BadRequest } from '../utils/error';
 
 const routes = Router();
 
-routes.get('/users', async (req, res) => {
+routes.param('id', (req, res, next) => {
   try {
-    const users = await usersServices.listUsers();
-    await res.status(200).json(users);
-  } catch (err) {
-    console.error(err.message);
+    console.log(req.params.id);
+    if (isNaN(Number(req.params.id))) {
+      throw new BadRequest('ID must be a number');
+    } else {
+      next();
+    }
+  } catch (error) {
+    next(error);
   }
 });
 
-routes.get('/users/:id', async (req, res) => {
+routes.get('/users', async (req, res, next) => {
   try {
-    let { id } = req.params;
+    const users = await usersServices.listUsers();
+    await res.status(200).json(users);
+  } catch (error) {
+    next(error);
+  }
+});
 
-    if (isNaN(Number(id))) {
-      throw new Error('id is not number');
-    }
+routes.get('/users/:id', async (req, res, next) => {
+  let { id } = req.params;
 
+  try {
     const user = await usersServices.getUser(Number(id));
 
     res.status(200).json(user);
   } catch (err) {
-    console.error(err.message);
+    next(err);
   }
 });
 
-routes.post('/users', async (req, res) => {
+routes.post('/users', async (req, res, next) => {
   try {
-    const { name, age, email, phone } = req.body;
-    const newUser = await usersServices.createUser({ name, age, email, phone });
+    const newUser = await usersServices.createUser(req.body);
 
     res.status(200).json(newUser);
   } catch (err) {
-    console.error(err.message);
+    next(err);
   }
 });
 
-routes.put('/users/:id', async (req, res) => {
+routes.put('/users/:id', async (req, res, next) => {
+  const { id } = req.params;
+
   try {
-    const { id } = req.params;
-    const { name, age, email, phone } = req.body;
-
-    if (isNaN(Number(id))) {
-      throw new Error('id is not number');
-    }
-
-    const updatedUser = usersServices.updateUser(Number(id), { name, age, email, phone });
+    const updatedUser = usersServices.updateUser(Number(id), req.body);
 
     res.sendStatus(200).json(updatedUser);
   } catch (err) {
-    console.error(err.message);
+    next(err);
   }
 });
 
-routes.delete('/users/:id', async (req, res) => {
+routes.delete('/users/:id', async (req, res, next) => {
+  const { id } = req.params;
   try {
-    const { id } = req.params;
-
-    if (isNaN(Number(id))) {
-      throw new Error('id is not number');
-    }
-
     usersServices.removeUser(Number(id));
 
     res.sendStatus(200);
   } catch (err) {
-    console.error(err.message);
+    next(err);
   }
 });
 
