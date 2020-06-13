@@ -1,4 +1,4 @@
-import usersDb from '../database/users';
+import usersDb from '../repositories/users';
 import { User, UserInfo } from '../types/user';
 
 async function listUsers(): Promise<User[]> {
