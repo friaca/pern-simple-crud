@@ -6,7 +6,6 @@ const routes = Router();
 
 routes.param('id', (req, res, next) => {
   try {
-    console.log(req.params.id);
     if (isNaN(Number(req.params.id))) {
       throw new BadRequest('ID must be a number');
     } else {
