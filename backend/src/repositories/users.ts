@@ -1,5 +1,5 @@
 import pool from '../config/database';
-import { User, UserInfo } from '../types/user';
+import { User } from '../types/user';
 
 async function list(): Promise<User[]> {
   try {
@@ -19,7 +19,7 @@ async function find(id: number): Promise<User> {
   }
 }
 
-async function create(userInfo: UserInfo): Promise<User> {
+async function create(userInfo: User): Promise<User> {
   try {
     const { rows } = await pool.query<User>(
       'INSERT INTO user_info (name, age, email, phone) VALUES ($1, $2, $3, $4) RETURNING *',
@@ -32,7 +32,7 @@ async function create(userInfo: UserInfo): Promise<User> {
   }
 }
 
-async function update(id: number, user: UserInfo): Promise<void> {
+async function update(id: number, user: User): Promise<void> {
   try {
     const {
       rows,

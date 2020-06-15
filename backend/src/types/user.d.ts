@@ -1,8 +1,5 @@
-export interface User extends UserInfo {
+export interface User {
   id: number;
-}
-
-export interface UserInfo {
   name: string;
   age: number;
   email: string;
