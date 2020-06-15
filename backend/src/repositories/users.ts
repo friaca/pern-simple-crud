@@ -12,7 +12,7 @@ async function list(): Promise<User[]> {
 
 async function find(id: number): Promise<User> {
   try {
-    const { rows } = await pool.query('SELECT * FROM user_info WHERE id = $1', [id]);
+    const { rows } = await pool.query<User>('SELECT * FROM user_info WHERE id = $1', [id]);
     return rows[0];
   } catch (error) {
     throw error;

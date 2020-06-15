@@ -1,10 +1,10 @@
-import usersDb from '../repositories/users';
-import { User, UserInfo } from '../types/user';
+import usersRepo from '../repositories/users';
+import { User } from '../types/user';
 import { NotFound } from '../utils/error';
 
 async function listUsers(): Promise<User[]> {
   try {
-    const users = await usersDb.list();
+    const users = await usersRepo.list();
     return users ?? [];
   } catch (error) {
     throw error;
@@ -13,7 +13,7 @@ async function listUsers(): Promise<User[]> {
 
 async function getUser(id: number): Promise<User> {
   try {
-    const user = await usersDb.find(id);
+    const user = await usersRepo.find(id);
 
     if (!user) {
       throw new NotFound(`Couldn't find user with ID ${id}`);
@@ -25,17 +25,17 @@ async function getUser(id: number): Promise<User> {
   }
 }
 
-async function createUser(userInfo: UserInfo): Promise<User> {
+async function createUser(userInfo: User): Promise<User> {
   try {
-    return await usersDb.create(userInfo);
+    return await usersRepo.create(userInfo);
   } catch (error) {
     throw error;
   }
 }
 
-async function updateUser(id: number, userInfo: UserInfo): Promise<void> {
+async function updateUser(id: number, userInfo: User): Promise<void> {
   try {
-    return await usersDb.update(id, userInfo);
+    return await usersRepo.update(id, userInfo);
   } catch (error) {
     throw error;
   }
@@ -43,7 +43,7 @@ async function updateUser(id: number, userInfo: UserInfo): Promise<void> {
 
 async function removeUser(id: number): Promise<void> {
   try {
-    return await usersDb.remove(id);
+    return await usersRepo.remove(id);
   } catch (error) {
     throw error;
   }
