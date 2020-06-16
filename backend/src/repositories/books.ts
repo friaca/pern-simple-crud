@@ -1,7 +1,6 @@
 import pool from '../config/database';
 import { Book } from '../types/book';
 import usersService from '../services/users';
-import { User } from '../types/user';
 
 async function list(): Promise<Book[]> {
   try {
@@ -9,15 +8,13 @@ async function list(): Promise<Book[]> {
     const finalBooks: Book[] = [];
 
     for await (const book of preBooks) {
-      const currAuthor = (
-        await pool.query<User>('SELECT * FROM user_info WHERE id = $1', [book.author_id])
-      ).rows[0];
+      const currAuthor = await usersService.getUser(book.author_id!);
 
       finalBooks.push(<Book>{
         id: book.id,
         title: book.title,
         year: book.year,
-        author: currAuthor,
+        author: { ...currAuthor },
       });
     }
 
