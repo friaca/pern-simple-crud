@@ -19,7 +19,7 @@ routes.param('id', (req, res, next) => {
 routes.get('/users', async (req, res, next) => {
   try {
     const users = await usersServices.listUsers();
-    await res.status(200).json(users);
+    res.status(200).json(users);
   } catch (error) {
     next(error);
   }
