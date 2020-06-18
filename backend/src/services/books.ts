@@ -1,11 +1,35 @@
 import booksRepo from '../repositories/books';
 import usersServices from '../services/users';
+import { mountBook } from '../utils/bookHelper';
 import { Book } from '../types/book';
 import { NotFound } from '../utils/error';
+import { User } from '../types/user';
+import books from '../repositories/books';
 
 async function listBooks(): Promise<Book[]> {
   try {
-    const books = booksRepo.list();
+    const preBooks = await booksRepo.list();
+    const uniqueAuthorIds = preBooks
+      .map((book: Book) => book.author_id!)
+      .reduce((acc, curr) => {
+        if (!acc.includes(curr)) {
+          acc.push(curr);
+        }
+
+        return acc;
+      }, [] as number[]);
+
+    let authors: User[] = [];
+    for await (const authorId of uniqueAuthorIds) {
+      authors.push(await usersServices.getUser(authorId));
+    }
+
+    const books = preBooks.map((book: Book) => {
+      const currAuthor = authors.find(author => author.id === book.author_id);
+
+      return mountBook(book, currAuthor!);
+    });
+
     return books ?? [];
   } catch (error) {
     throw error;
@@ -14,13 +38,15 @@ async function listBooks(): Promise<Book[]> {
 
 async function getBook(id: number): Promise<Book> {
   try {
-    const book = await booksRepo.find(id);
+    const preBook = await booksRepo.find(id);
 
-    if (!book) {
+    if (!preBook) {
       throw new NotFound(`Couldn't find book with ID ${id}`);
     }
 
-    return book;
+    const author = await usersServices.getUser(preBook.author_id!);
+
+    return mountBook(preBook, author);
   } catch (error) {
     throw error;
   }
@@ -35,12 +61,7 @@ async function createBook(book: Book): Promise<Book> {
 
     const newBook = await booksRepo.create(book);
 
-    return <Book>{
-      id: newBook.id,
-      title: newBook.title,
-      year: newBook.year,
-      author: { ...author },
-    };
+    return mountBook(newBook, author);
   } catch (error) {
     throw error;
   }
@@ -48,14 +69,11 @@ async function createBook(book: Book): Promise<Book> {
 
 async function updateBook(id: number, book: Book): Promise<Book> {
   try {
-    let fullBook;
-    if (!book.author_id || !book.title || !book.year) {
-      fullBook = await getBook(id);
-    }
+    let previousBook = await getBook(id);
 
-    const updatedBook = await booksRepo.update(id, { ...fullBook, ...book });
+    await booksRepo.update(id, { ...previousBook, ...book });
 
-    return updatedBook;
+    return await getBook(id);
   } catch (error) {
     throw error;
   }
