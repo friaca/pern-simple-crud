@@ -1,0 +1,32 @@
+.user-card {
+  display: flex;
+  border: 1px solid black;
+  margin: 10px;
+  border-radius: 4px;
+  line-height: 0.7em;
+}
+
+.user-card .user-img {
+  align-self: center;
+  padding: 10px;
+}
+
+.user-options {
+  width: 100%;
+  text-align: end;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+
+.user-options button {
+  border: 1px solid black;
+  border-radius: 2px;
+  background-color: #f9f9f9;
+  width: 75px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.user-info {
+  width: 100%;
+}

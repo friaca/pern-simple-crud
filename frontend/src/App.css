@@ -1,0 +1,35 @@
+.App {
+  display: grid;
+  grid-template-areas:
+    "header header header"
+    "body body body";
+  grid-template-rows: 0.2fr auto;
+}
+
+.App header {
+  grid-area: header;
+  text-align: center;
+  margin-bottom: 25px;
+  background-color: #303030;
+  color: #fff;
+}
+
+#main-container {
+  grid-area: body;
+  display: grid;
+  grid-template-areas: "users . books";
+  padding: 15px;
+  grid-template-columns: 0.3fr auto 0.3fr;
+}
+
+#main-container #users-container {
+  grid-area: users;
+  background-color: aquamarine;
+  border-radius: 4px;
+}
+
+#main-container #books-container {
+  grid-area: books;
+  background-color: #cecece;
+  border-radius: 4px;
+}
