@@ -22,14 +22,18 @@
   grid-template-columns: 0.3fr auto 0.3fr;
 }
 
+#main-container .container {
+  border-radius: 4px;
+}
+
+#main-container .container h3 {
+  margin: 0;
+}
+
 #main-container #users-container {
   grid-area: users;
-  background-color: aquamarine;
-  border-radius: 4px;
 }
 
 #main-container #books-container {
   grid-area: books;
-  background-color: #cecece;
-  border-radius: 4px;
 }
