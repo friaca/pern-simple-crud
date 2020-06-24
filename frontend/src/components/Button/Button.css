@@ -1,8 +1,13 @@
 .button-container button {
-  border: 1px solid black;
+  border: unset;
   border-radius: 2px;
   background-color: #f9f9f9;
   width: 75px;
   height: 35px;
   cursor: pointer;
+}
+
+.button-container button:hover,
+.button-container button:focus {
+  background-color: #e2e2e2;
 }

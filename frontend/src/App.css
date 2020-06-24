@@ -9,7 +9,6 @@
 .App header {
   grid-area: header;
   text-align: center;
-  margin-bottom: 25px;
   background-color: #303030;
   color: #fff;
 }

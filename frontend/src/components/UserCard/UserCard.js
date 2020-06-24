@@ -4,8 +4,6 @@ import "./UserCard.css";
 
 function UserCard(props) {
   const buttonStyle = {
-    width: "100%",
-    textAlign: "end",
     paddingRight: "10px",
     paddingTop: "10px",
   };
