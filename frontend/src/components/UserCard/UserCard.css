@@ -1,9 +1,10 @@
 .user-card {
   display: flex;
-  border: 1px solid black;
+  border: 1px solid #5eb4ff;
   margin-top: 10px;
   border-radius: 4px;
   line-height: 0.7em;
+  background-color: #91ccff;
 }
 
 .user-card .user-img {
