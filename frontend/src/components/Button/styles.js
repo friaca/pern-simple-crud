@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const ButtonStyled = styled.button`
   border: unset;
@@ -12,4 +12,17 @@ export const ButtonStyled = styled.button`
   &:focus {
     background-color: #e2e2e2;
   }
+`;
+
+export const ButtonStyledWrapper = styled.div`
+  ${(props) =>
+    props.padTop &&
+    css`
+      padding-top: 10px;
+    `}
+  ${(props) =>
+    props.padRight &&
+    css`
+      padding-right: 10px;
+    `}
 `;

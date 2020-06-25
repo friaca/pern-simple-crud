@@ -1,13 +1,13 @@
 import React from "react";
-import { ButtonStyled } from "./styles";
+import { ButtonStyled, ButtonStyledWrapper } from "./styles";
 
 function Button(props) {
   return (
-    <div style={props.style}>
+    <ButtonStyledWrapper {...props}>
       <ButtonStyled onClick={() => (props.action ? props.action() : null)}>
         {props.children}
       </ButtonStyled>
-    </div>
+    </ButtonStyledWrapper>
   );
 }
 

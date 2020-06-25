@@ -20,7 +20,9 @@ function UserCard(props) {
         <p>{props.tel}</p>
         <p>{props.email}</p>
       </UserInfoWrapper>
-      <Button style={buttonStyle}>Editar</Button>
+      <Button padTop padRight>
+        Editar
+      </Button>
     </UserCardWrapper>
   );
 }

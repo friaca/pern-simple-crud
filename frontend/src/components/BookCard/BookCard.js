@@ -3,11 +3,6 @@ import Button from "../Button";
 import { BookCardWrapper, BookInfoWrapper } from "./styles";
 
 function BookCard(props) {
-  const buttonStyle = {
-    paddingRight: "10px",
-    paddingTop: "10px",
-  };
-
   return (
     <BookCardWrapper>
       <BookInfoWrapper>
@@ -16,7 +11,9 @@ function BookCard(props) {
         </p>
         <p>{props.author.name}</p>
       </BookInfoWrapper>
-      <Button style={buttonStyle}>Editar</Button>
+      <Button padTop padRight>
+        Editar
+      </Button>
     </BookCardWrapper>
   );
 }
