@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "../Button/Button";
-import "./UserCard.css";
+import Button from "../Button";
+import { UserCardWrapper, UserImgWrapper, UserInfoWrapper } from "./styles";
 
 function UserCard(props) {
   const buttonStyle = {
@@ -9,22 +9,19 @@ function UserCard(props) {
   };
 
   return (
-    <div className="user-card">
-      <div className="user-img">
-        <img
-          src="https://via.placeholder.com/100"
-          alt="Imagem do usuário"
-        ></img>
-      </div>
-      <div className="user-info">
+    <UserCardWrapper>
+      <UserImgWrapper>
+        <img src="https://via.placeholder.com/75" alt="Imagem do usuário"></img>
+      </UserImgWrapper>
+      <UserInfoWrapper>
         <p>
           {props.name}, {props.age} anos
         </p>
         <p>{props.tel}</p>
         <p>{props.email}</p>
-      </div>
+      </UserInfoWrapper>
       <Button style={buttonStyle}>Editar</Button>
-    </div>
+    </UserCardWrapper>
   );
 }
 

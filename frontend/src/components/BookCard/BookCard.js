@@ -1,6 +1,6 @@
 import React from "react";
-import Button from "../Button/Button";
-import "./BookCard.css";
+import Button from "../Button";
+import { BookCardWrapper, BookInfoWrapper } from "./styles";
 
 function BookCard(props) {
   const buttonStyle = {
@@ -9,14 +9,15 @@ function BookCard(props) {
   };
 
   return (
-    <div className="book-card">
-      <div className="book-info">
-        <p>{props.title}</p>
-        <p>{props.year}</p>
+    <BookCardWrapper>
+      <BookInfoWrapper>
+        <p>
+          {props.title}, {props.year}
+        </p>
         <p>{props.author.name}</p>
-      </div>
+      </BookInfoWrapper>
       <Button style={buttonStyle}>Editar</Button>
-    </div>
+    </BookCardWrapper>
   );
 }
 

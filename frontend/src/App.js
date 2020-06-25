@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
-import UsersContainer from "./components/UsersContainer/UsersContainer";
-import BooksContainer from "./components/BooksContainer/BooksContainer";
+import UsersContainer from "./components/UsersContainer";
+import BooksContainer from "./components/BooksContainer";
 
 function App() {
   return (

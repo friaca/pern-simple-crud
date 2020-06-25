@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import BookCard from "../BookCard/BookCard";
-import "./BooksContainer.css";
+import BookCard from "../BookCard";
+import { BooksContainerWrapper } from "./styles";
 import api from "../../api";
 
 function BooksContainer() {
@@ -25,10 +25,10 @@ function BooksContainer() {
   ));
 
   return (
-    <div className="container" id="books-container">
+    <BooksContainerWrapper id="books-container">
       <h3>Livros</h3>
       <div class="books">{booksDisplay}</div>
-    </div>
+    </BooksContainerWrapper>
   );
 }
 

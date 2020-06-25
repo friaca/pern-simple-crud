@@ -1,4 +1,6 @@
-.book-card {
+import styled from "styled-components";
+
+export const BookCardWrapper = styled.div`
   border-radius: 4px;
   margin-top: 10px;
   line-height: 0.5em;
@@ -7,9 +9,9 @@
   -webkit-box-shadow: 10px 10px 20px -10px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 10px 10px 20px -10px rgba(0, 0, 0, 0.25);
   box-shadow: 10px 10px 20px -10px rgba(0, 0, 0, 0.25);
-}
+`;
 
-.book-info {
+export const BookInfoWrapper = styled.div`
   padding: 10px;
   flex-grow: 2;
-}
+`;

@@ -1,12 +1,12 @@
 import React from "react";
-import "./Button.css";
+import { ButtonStyled } from "./styles";
 
 function Button(props) {
   return (
-    <div style={props.style} className="button-container">
-      <button onClick={() => (props.action ? props.action() : null)}>
+    <div style={props.style}>
+      <ButtonStyled onClick={() => (props.action ? props.action() : null)}>
         {props.children}
-      </button>
+      </ButtonStyled>
     </div>
   );
 }
