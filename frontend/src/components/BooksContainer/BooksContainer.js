@@ -25,7 +25,7 @@ function BooksContainer() {
   ));
 
   return (
-    <BooksContainerWrapper id="books-container">
+    <BooksContainerWrapper className="container" id="books-container">
       <h3>Livros</h3>
       <div class="books">{booksDisplay}</div>
     </BooksContainerWrapper>
