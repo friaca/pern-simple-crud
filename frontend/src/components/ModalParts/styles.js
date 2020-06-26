@@ -14,6 +14,7 @@ export const CloseElementStyled = styled.div`
 export const ModalBodyStyled = styled.div`
   padding: 15px;
   overflow-y: auto;
+  flex-grow: 1;
 `;
 
 export const ModalFooterStyled = styled.div`
