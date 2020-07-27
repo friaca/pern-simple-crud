@@ -23,6 +23,7 @@
 
 #main-container .container {
   border-radius: 4px;
+  align-self: self-start;
 }
 
 #main-container .container h3 {
@@ -35,4 +36,12 @@
 
 #main-container #books-container {
   grid-area: books;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex.space-between {
+  justify-content: space-between;
 }
