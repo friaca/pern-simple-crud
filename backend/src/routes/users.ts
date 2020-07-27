@@ -37,6 +37,18 @@ routes.get('/users/:id', async (req, res, next) => {
   }
 });
 
+routes.get('/users/:id/books', async (req, res, next) => {
+  let { id } = req.params;
+
+  try {
+    const books = await usersServices.getUserBooks(Number(id));
+
+    res.status(200).json(books);
+  } catch (err) {
+    next(err);
+  }
+})
+
 routes.post('/users', async (req, res, next) => {
   try {
     const newUser = await usersServices.createUser(req.body);

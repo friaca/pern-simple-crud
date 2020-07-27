@@ -1,5 +1,6 @@
 import pool from '../config/database';
 import { User } from '../types/user';
+import { Book } from '../types/book';
 
 async function list(): Promise<User[]> {
   try {
@@ -53,10 +54,21 @@ async function remove(id: number): Promise<void> {
   }
 }
 
+async function findBooks(id: number) : Promise<Book[]> {
+  try {
+    const { rows } = await pool.query<Book>('SELECT * FROM book WHERE author_id = $1', [id]);
+
+    return rows;
+  } catch (error) {
+    throw error;
+  }
+}
+
 export default {
   list,
   find,
   create,
   update,
   remove,
+  findBooks,
 };
