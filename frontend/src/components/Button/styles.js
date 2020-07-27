@@ -7,16 +7,22 @@ export const ButtonStyled = styled.button`
     switch (props.color) {
       case "green":
         return css`#28a745`;
+      case "red":
+        return css`#ff5555`;
       default:
         return css`#f9f9f9`;
     }
   }};
-  ${(props) =>
-    props.color === "green"
-      ? css`
-          color: white;
-        `
-      : ""}
+  color: ${(props) => {
+    switch (props.color) {
+      case 'green':
+      case 'red':
+        return 'white';
+      default:
+        return ''
+    }
+  }
+  };
   width: 75px;
   height: 35px;
   cursor: pointer;
@@ -27,6 +33,8 @@ export const ButtonStyled = styled.button`
       switch (props.color) {
         case "green":
           return css`#23913c`;
+        case "red":
+          return css`#ea3535`;
         default:
           return css`#e2e2e2`;
       }
