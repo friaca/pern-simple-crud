@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h3>Meu CRUD Simples</h3>
+        <h3>CRUD Simples</h3>
       </header>
       <div id="main-container">
         <UsersContainer></UsersContainer>
