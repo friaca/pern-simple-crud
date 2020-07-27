@@ -1,33 +1,18 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import modalStyles from "../../modalStyles";
-import Button from "../Button";
 import ModalParts from "../ModalParts";
+import Button from "../Button";
 import Field from "../Field";
 import { UserCardWrapper, UserImgWrapper, UserInfoWrapper } from "./styles";
+import { isValidUser } from '../../utils/user';
 
-function UserCard({name, age, email, phone, changeHandler}) {
+function UserCard({id, name, age, email, phone, changeHandler, deleteUser}) {
   const [isModalOpen, setIsOpen] = useState(false);
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
   const [user, setUser] = useState({ name, age, email, phone });
-
-  function isValidUser(user) {
-    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-    const phoneRegex = /^\([0-9]{2}\) [0-9]{5}-[0-9]{4}$/;
-
-    if (!user.name.length || user.name.length > 99)
-      return false
-    if (user.age < 0 || user.age > 100)
-      return false;
-    if (!user.email.match(emailRegex))
-      return false;
-    if (!user.phone.match(phoneRegex))
-      return false;
-
-    return true;
-  }
 
   function handleChangeUser(field, event) {
     const { value } = event.target;
@@ -38,10 +23,14 @@ function UserCard({name, age, email, phone, changeHandler}) {
     }))
   }
 
-  function saveUser() {
+  async function saveUser() {
     if (isValidUser(user)) {
-      changeHandler(user);
-      closeModal();
+      try {
+        await changeHandler(user);
+        closeModal();
+      } catch (e) {
+        alert('Deu algo errado');
+      }
     } else {
       alert('Informações inválidas!');
     }
@@ -61,6 +50,9 @@ function UserCard({name, age, email, phone, changeHandler}) {
       </UserInfoWrapper>
       <Button padTop padRight clickAction={openModal}>
         Editar
+      </Button>
+      <Button color="red" padTop padRight clickAction={() => deleteUser(id)}>
+        Deletar
       </Button>
       
       {isModalOpen && (
