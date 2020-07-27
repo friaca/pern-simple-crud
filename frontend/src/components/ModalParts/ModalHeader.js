@@ -1,10 +1,14 @@
 import React from "react";
-import { ModalHeaderStyled, CloseElementStyled } from "./styles";
+import {
+  ModalHeaderStyled,
+  CloseElementStyled,
+  ModalTitleStyled,
+} from "./styles";
 
 export default function ModalHeader(props) {
   return (
     <ModalHeaderStyled>
-      <span>{props.title}</span>
+      <ModalTitleStyled>{props.title}</ModalTitleStyled>
       <CloseElementStyled onClick={props.onCloseClick}>X</CloseElementStyled>
     </ModalHeaderStyled>
   );

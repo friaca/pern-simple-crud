@@ -12,7 +12,7 @@ export const CloseElementStyled = styled.div`
 `;
 
 export const ModalBodyStyled = styled.div`
-  padding: 15px;
+  padding: 10px 15px;
   overflow-y: auto;
   flex-grow: 1;
 `;
@@ -22,4 +22,8 @@ export const ModalFooterStyled = styled.div`
   display: flex;
   justify-content: flex-end;
   padding: 20px;
+`;
+
+export const ModalTitleStyled = styled.h3`
+  margin: 0;
 `;
