@@ -4,7 +4,10 @@ import { ButtonStyled, ButtonStyledWrapper } from "./styles";
 function Button(props) {
   return (
     <ButtonStyledWrapper {...props}>
-      <ButtonStyled onClick={() => (props.action ? props.action() : null)}>
+      <ButtonStyled
+        color={props.color}
+        onClick={() => (props.clickAction ? props.clickAction() : null)}
+      >
         {props.children}
       </ButtonStyled>
     </ButtonStyledWrapper>
