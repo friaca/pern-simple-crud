@@ -7,7 +7,7 @@ import Field from "../Field";
 import { UserCardWrapper, UserImgWrapper, UserInfoWrapper } from "./styles";
 import { isValidUser } from '../../utils/user';
 
-function UserCard({id, name, age, email, phone, changeHandler, deleteUser}) {
+function UserCard({ id, name, age, email, phone, changeHandler, deleteUser }) {
   const [isModalOpen, setIsOpen] = useState(false);
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
@@ -62,7 +62,7 @@ function UserCard({id, name, age, email, phone, changeHandler, deleteUser}) {
           style={modalStyles}
         >
           <ModalParts.Header
-            title="Um título"
+            title="Editar usuário"
             onCloseClick={closeModal}
           ></ModalParts.Header>
           <ModalParts.Body>
@@ -100,7 +100,7 @@ function UserCard({id, name, age, email, phone, changeHandler, deleteUser}) {
             ></Field>
           </ModalParts.Body>
           <ModalParts.Footer>
-            <Button color="green" onClick={saveUser}>
+            <Button color="green" clickAction={saveUser}>
               Salvar
             </Button>
           </ModalParts.Footer>
