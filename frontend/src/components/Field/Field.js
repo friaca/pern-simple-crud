@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { FieldStyled, InputStyled, LabelStyled } from "./styles";
 
-export default function Field({label, inputType, inputValue, placeholder, fieldName, changeHandler}) {
+export default function Field({ label, inputType, inputValue, placeholder, fieldName, changeHandler }) {
   return (
     <FieldStyled>
       <LabelStyled>{label}</LabelStyled>
