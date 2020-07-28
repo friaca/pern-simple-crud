@@ -6,8 +6,9 @@ import ModalParts from "../ModalParts";
 import Field from "../Field";
 import Dropdown from '../Dropdown';
 import { BookCardWrapper, BookInfoWrapper } from "./styles";
+import { isValidBook, formatDropdownAuthor } from '../../utils/books';
 
-function BookCard({ id, title, year, author, authorsCollection }) {
+function BookCard({ id, title, year, author, authorsCollection, changeHandler, deleteBook }) {
   const [isModalOpen, setIsOpen] = useState(false);
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
@@ -23,16 +24,12 @@ function BookCard({ id, title, year, author, authorsCollection }) {
     setSelectedAuthor(authorsCollection[selectedIndex].id)
   }, [])
 
-  function formatDropdownAuthor(author) {
-    return { text: author.name,  id: author.id }
-  }
-
   function handleChangeBook(field, event) {
     const { value } = event.target;
     
     setBook(previous => ({
-        ...previous,
-        [field]: value
+      ...previous,
+      [field]: value
     }))
   }
 
@@ -43,18 +40,31 @@ function BookCard({ id, title, year, author, authorsCollection }) {
     handleChangeBook('author', { target: { value: fullAuthor }});
   }
 
+  async function saveBook() {
+    if (isValidBook(book)) {
+      try {
+        await changeHandler(book);
+        closeModal();
+      } catch (e) {
+        alert('Deu algo errado');
+      }
+    } else {
+      alert('Informações inválidas!');
+    }
+  }
+
   return (
     <BookCardWrapper>
       <BookInfoWrapper>
         <p>
-          {book.title}, {book.year}
+          {title}, {year}
         </p>
-        <p>{book.author.name}</p>
+        <p>{author.name}</p>
       </BookInfoWrapper>
       <Button padTop padRight clickAction={openModal}>
         Editar
       </Button>
-      <Button color="red" padTop padRight>
+      <Button color="red" padTop padRight clickAction={() => deleteBook(id)}>
         Deletar
       </Button>
       {isModalOpen && (
@@ -81,8 +91,8 @@ function BookCard({ id, title, year, author, authorsCollection }) {
               label="Título"
               inputType="text"
               fieldName="title"
-              inputValue={title}
-              placeholder="(12) 91234-5678"
+              inputValue={book.title}
+              placeholder="Algum título"
               changeHandler={handleChangeBook}
             ></Field>
             <Field
@@ -90,12 +100,12 @@ function BookCard({ id, title, year, author, authorsCollection }) {
               inputType="number"
               fieldName="year"
               inputValue={book.year}
-              placeholder="(12) 91234-5678"
+              placeholder="1999"
               changeHandler={handleChangeBook}
             ></Field>
           </ModalParts.Body>
           <ModalParts.Footer>
-            <Button color="green">
+            <Button color="green" clickAction={saveBook}>
               Salvar
             </Button>
           </ModalParts.Footer>
