@@ -119,11 +119,11 @@ function BooksContainer() {
 
   return (
     <BooksContainerWrapper className="container" id="books-container">
-      <div className="flex space-between">
+      <div className="flex space-between items-center">
         <h3>Livros</h3>
         <Button color="green" onClick={openModal}>Criar</Button>
       </div>
-      <div className="books">{booksDisplay}</div>
+      <div className="books main-container-scroll">{booksDisplay}</div>
       {isModalOpen && (
         <Modal
           isOpen={isModalOpen}

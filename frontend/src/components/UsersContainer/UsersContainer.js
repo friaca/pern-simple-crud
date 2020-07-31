@@ -103,11 +103,11 @@ function UsersContainer() {
 
   return (
     <UsersContainerWrapper className="container" id="users-container">
-      <div className="flex space-between">
+      <div className="flex space-between items-center">
         <h3>Usuários</h3>
         <Button color="green" onClick={openModal}>Criar</Button>
       </div>
-      <div className="users">{usersDisplay}</div>
+      <div className="users main-container-scroll">{usersDisplay}</div>
       {isModalOpen && (
         <Modal
           isOpen={isModalOpen}
