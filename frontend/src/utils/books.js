@@ -5,7 +5,7 @@ export const emptyBook = {
 }
 
 export function isValidBook(book) {
-  if (!book.title) return false;
+  if (!book.title || book.title.length > 50) return false;
   if (!book.author || !book.author.name || !book.author.id) return false;
   if (book.year < 0 || book.year > new Date().getFullYear()) return false;
 
