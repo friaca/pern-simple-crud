@@ -18,12 +18,13 @@
   display: grid;
   grid-template-areas: "users . books";
   padding: 15px;
-  grid-template-columns: 0.3fr auto 0.3fr;
+  grid-template-columns: 1fr 0.3fr 1fr;
 }
 
 #main-container .container {
   border-radius: 4px;
   align-self: self-start;
+  margin: 5px;
 }
 
 #main-container .container h3 {
@@ -44,4 +45,31 @@
 
 .flex.space-between {
   justify-content: space-between;
+}
+
+.flex.items-center {
+  align-items: center;
+}
+
+.main-container-scroll {
+  max-height: calc(100vh - 175px);
+  overflow-y: auto;
+  margin-top: 15px;
+  padding: 0px 5px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #505050;
+}
+
+::-webkit-scrollbar-thumb {
+  background: white;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #dddddd;
 }
