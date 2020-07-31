@@ -4,7 +4,7 @@ import modalStyles from "../../modalStyles";
 import ModalParts from "../ModalParts";
 import Button from "../Button";
 import Field from "../Field";
-import { UserCardWrapper, UserImgWrapper, UserInfoWrapper } from "./styles";
+import { UserCardWrapper, UserInfoWrapper } from "./styles";
 import { isValidUser } from '../../utils/user';
 
 function UserCard({ id, name, age, email, phone, changeHandler, deleteUser }) {
@@ -38,12 +38,9 @@ function UserCard({ id, name, age, email, phone, changeHandler, deleteUser }) {
 
   return (
     <UserCardWrapper>
-      <UserImgWrapper>
-        <img src="https://via.placeholder.com/75" alt="Imagem do usuário"></img>
-      </UserImgWrapper>
       <UserInfoWrapper>
         <p>
-          {name}, {age} anos
+          <b>{name}</b>, {age} anos
         </p>
         <p>{phone}</p>
         <p>{email}</p>

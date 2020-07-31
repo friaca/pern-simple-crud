@@ -57,7 +57,7 @@ function BookCard({ id, title, year, author, authorsCollection, changeHandler, d
     <BookCardWrapper>
       <BookInfoWrapper>
         <p>
-          {title}, {year}
+          <b>{title}</b>, {year}
         </p>
         <p>{author.name}</p>
       </BookInfoWrapper>
