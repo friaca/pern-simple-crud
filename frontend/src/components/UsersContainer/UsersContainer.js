@@ -115,7 +115,7 @@ function UsersContainer() {
           style={modalStyles}
         >
           <ModalParts.Header
-            title="Um título"
+            title="Criar usuário"
             onCloseClick={closeModal}
           ></ModalParts.Header>
           <ModalParts.Body>
